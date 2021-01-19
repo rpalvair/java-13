@@ -12,6 +12,8 @@ public class TextBlockTest {
             }
             """;
 
+    private static final String JSON_INLINE = "{ \"firstname\": \"Ruddy\",\n  \"lastname\": \"Palvair\"\n}\n";
+
     private static final String JSON_TO_FORMAT = """
             { "firstname": "%s",
               "lastname": "%s"
@@ -29,5 +31,10 @@ public class TextBlockTest {
     public void should_format_text_block() {
         assertThat(JSON_TO_FORMAT.formatted("John", "Doe")).contains("John", "Doe");
         assertThat(String.format(JSON_TO_FORMAT, "John", "Doe")).contains("John", "Doe");
+    }
+
+    @Test
+    public void should_reproduce_spaces_and_line_returns() {
+        assertThat(JSON).isEqualTo(JSON_INLINE);
     }
 }
